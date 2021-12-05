@@ -1,6 +1,6 @@
 //selecting all required elements
 const dropArea = document.querySelector(".drag-area"),
-dragText = dropArea.querySelector("header"),
+dragText = dropArea.querySelector("#dragText"),
 button = dropArea.querySelector("button"),
 input = dropArea.querySelector("input");
 let file; //this is a global variable and we'll use it inside multiple functions
@@ -21,13 +21,13 @@ input.addEventListener("change", function(){
 dropArea.addEventListener("dragover", (event)=>{
   event.preventDefault(); //preventing from default behaviour
   dropArea.classList.add("active");
-  dragText.textContent = "Release to Upload File";
+  dragText.textContent = "Release to Upload Master Data Change Request";
 });
 
 //If user leave dragged File from DropArea
 dropArea.addEventListener("dragleave", ()=>{
   dropArea.classList.remove("active");
-  dragText.textContent = "Drag & Drop to Upload File";
+  dragText.textContent = "Drag & Drop Master Data Change Request";
 });
 
 //If user drop File on DropArea
@@ -40,6 +40,7 @@ dropArea.addEventListener("drop", (event)=>{
 
 function showFile(){
   let fileType = file.type; //getting selected file type
+  alert("File Type: " + fileType)
   let validExtensions = ["image/jpeg", "image/jpg", "image/png"]; //adding some valid image extensions in array
   if(validExtensions.includes(fileType)){ //if user selected file is an image file
     let fileReader = new FileReader(); //creating new FileReader object
@@ -53,6 +54,6 @@ function showFile(){
   }else{
     alert("This is not an Image File!");
     dropArea.classList.remove("active");
-    dragText.textContent = "Drag & Drop to Upload File";
+    dragText.textContent = "Drag & Drop Master Data Change Request";
   }
 }
